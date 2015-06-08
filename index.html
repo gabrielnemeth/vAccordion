@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VAccordion</title>
+    <link rel="stylesheet" href="css/accordion.css">
+</head>
+
+<body>
+
+    <!-- Accordion start -->
+
+    <ul id="vaccordion">
+        <li class="open"></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <!-- Accordion end   -->
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/accordion.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#vaccordion").vAccordion({
+                slideOpen: 50
+            });
+        });
+    </script>
+</body>
+
+</html>

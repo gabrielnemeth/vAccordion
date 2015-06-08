@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#vaccordion {
+    list-style: none;
+    width: 100%;
+}
+
+#vaccordion li {
+    
+}
+
+#vaccordion li.open {
+    
+}
+
+li:nth-child(1) {
+    background-color: darkolivegreen;
+}
+
+li:nth-child(2) {
+    background-color: darkslategrey;
+}
+
+li:nth-child(3) {
+    background-color: darksalmon;
+}
