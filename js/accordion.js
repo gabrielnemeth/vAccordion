@@ -4,7 +4,8 @@
 
         var settings = $.extend({
             //Defaults
-            slideOpen: 40
+            slideOpen: 50,
+            slideClosed: 25
         }, options);
 
 
@@ -20,15 +21,14 @@
             $('#vaccordion li').each(function () {
 
                 if ($(this).hasClass('open')) {
-                    //$(this).css('height', windowHeight * openSlidePercentage); // Set the open list item's height
-                    //console.log($(this).position());
+                    
                     $(this).animate({
 
                         height: windowHeight * openSlidePercentage
 
                     }, 500, 'linear');
                 } else {
-                    //                    /$(this).css('height', windowHeight * closedItemsPercentage); // Set the closed list item's height
+                    
                     $(this).animate({
 
                         height: windowHeight * closedItemsPercentage
@@ -55,12 +55,24 @@
 
         listItems = $('#vaccordion li').length; // Number of list items
         closedItems = listItems - 1; // There is one open slide
-        closedItemsPercentage = settings.slideOpen / closedItems; // Get the closed list items height
-        closedItemsPercentage = closedItemsPercentage / 100; // Get the closed list items height in percentage
+
+        closedItemsPercentage = settings.slideClosed * closedItems;
+
+        if (((settings.slideClosed * closedItems) + settings.slideOpen) === 100) { // Checking if the height value from user is correct
+            
+            closedItemsPercentage = settings.slideClosed;
+            closedItemsPercentage = closedItemsPercentage / 100; // Calculated the percentage of one closed slide according of user value
+
+        } else { // If the user gives wrong values, then the closed slides are calculated from open slide height
+            console.warn('You didn\'t divided equaly the closed sliders.');
+            closedItemsPercentage = 100 - settings.slideOpen;
+            closedItemsPercentage = closedItemsPercentage / closedItems;
+            closedItemsPercentage = closedItemsPercentage / 100;
+        }
 
         getWindowSize(); // Get the initial windows size
         setSlideHeightPure(); // Set the initail height of the slides
-
+        
         $('#vaccordion li').click(function () {
 
             $('#vaccordion li').removeClass('open');
